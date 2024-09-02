@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
-#include <math.h>
+#include <cmath>
+#include <windows.h> 
 using namespace std;
 
 class calculator {
@@ -11,27 +12,24 @@ public:
     int secondNumber;
     int result;
 
-    void clearConsole() {
-        for (int i = 0; i < 100; i++) {
-        std::cout << std::endl;
-        }
-    }
+    void sleep(int milliseconds) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+    }   
+
     void line(){
         cout << "------------------------------" << endl;
     }
 
-    int backToMenu() {
-
+    void backToMenu() {
         clearConsole();
         menu();
     }
 
     void end() {
-        return 0;
+        exit(0); // Zakończenie działania programu
     }
 
-    int addition(){
-
+    void addition(){
         clearConsole();
 
         cout << "Enter first number: ";
@@ -41,16 +39,14 @@ public:
         cin >>  secondNumber;
 
         result = firstNumber + secondNumber;
-        cout << "Result of the equation: " << firstNumber << " + " << secondNumber << "equals: " << result;
+        cout << "Result of the equation: " << firstNumber << " + " << secondNumber << " equals: " << result;
         cout << endl;
 
         line();
         nextAction();
-
     }
 
-    int subtraction() {
-
+    void subtraction() {
         clearConsole();
 
         cout << "Enter first number: ";
@@ -60,7 +56,7 @@ public:
         cin >>  secondNumber;
 
         result = firstNumber - secondNumber;
-        cout << "Result of the equation: " << irstNumber << " - "<< secondNumber << "equals: " << result;
+        cout << "Result of the equation: " << firstNumber << " - " << secondNumber << " equals: " << result;
         cout << endl;
 
         line();
@@ -68,7 +64,6 @@ public:
     }
 
     void nextAction(){
-        
         int nextAction;
 
         clearConsole();
@@ -81,27 +76,24 @@ public:
         cin >> nextAction;
 
         switch(nextAction){
-
             case 1: backToMenu();
             break;
 
             case 2: end();
             break;
 
-            default: cout << "Error occur during choosing the action" << endl;
-
-                Sleep(10);
-                cout << "Automatic return to menu in progress";
-                Sleep(10);
-                cout << "wait..."
+            default: 
+                cout << "Error occur during choosing the action" << endl;
+                sleep(100);
+                cout << "Automatic return to menu in progress" << endl;
+                sleep(1000);
+                cout << "wait..." << endl;
+                sleep(1000);
                 backToMenu();
-
         }
-
     }
 
     void menu() {
-
         int choice; 
 
         clearConsole();
@@ -113,8 +105,8 @@ public:
         cout << endl << endl;
 
         cout<<"1- adding two numbers" << endl;
-        cout<<"2- subtraction two numbers";
-        cout<<"3- close program"
+        cout<<"2- subtraction two numbers" << endl;
+        cout<<"3- close program" << endl;
         cout << endl << endl;
         
         cout << "You choose: " << endl;
@@ -130,22 +122,21 @@ public:
             case 3: end();
             break;
 
-            default: cout << "Error occur during choosing the action" << endl;
-
-                Sleep(10);
-                cout << "Automatic return to menu in progress";
-                Sleep(10);
-                cout << "wait..."
+            default: 
+                cout << "Error occur during choosing the action" << endl;
+                sleep(100);
+                cout << "Automatic return to menu in progress" << endl;
+                sleep(1000);
+                cout << "wait..." << endl;
+                sleep(1000);
                 backToMenu();
         }
-}
-
+    }
 };
 
+int main(int argc, char const *argv[]) {
 
-
-int main(int argc, char const *argv[])  {
-    
-    calculator.menu();
+    calculator calc; // class calculator, object calc
+    calc.menu(); // object calc, method menu
     
 }
