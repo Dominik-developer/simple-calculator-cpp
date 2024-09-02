@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
-#include <windows.h> 
 using namespace std;
 
 class calculator {
@@ -12,11 +11,17 @@ public:
     int secondNumber;
     int result;
 
+    void clearConsole() {
+        for (int i = 0; i < 100; i++) {
+        std::cout << std::endl;
+        }
+    }
+
     void sleep(int milliseconds) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
     }   
 
-    void line(){
+    void line() {
         cout << "------------------------------" << endl;
     }
 
@@ -26,7 +31,38 @@ public:
     }
 
     void end() {
-        exit(0); // Zakończenie działania programu
+        exit(0); 
+    }
+
+    void nextAction() {
+        int nextAction;
+
+        clearConsole();
+
+        cout << "1- go back to menu" << endl;
+        cout << "2- close program";
+        cout << endl << endl;
+
+        cout << "You choose: " << endl;
+        cin >> nextAction;
+
+        switch(nextAction){
+
+            case 1: backToMenu();
+            break;
+
+            case 2: end();
+            break;
+
+            default: 
+                cout << "Error occur during choosing the action" << endl;
+                sleep(100);
+                cout << "Automatic return to menu in progress ";
+                sleep(1000);
+                cout << "wait..." << endl;
+                sleep(1000);
+                backToMenu();
+        }
     }
 
     void addition(){
@@ -47,6 +83,7 @@ public:
     }
 
     void subtraction() {
+
         clearConsole();
 
         cout << "Enter first number: ";
@@ -63,42 +100,13 @@ public:
         nextAction();
     }
 
-    void nextAction(){
-        int nextAction;
-
-        clearConsole();
-
-        cout << "1- go back to menu" << endl;
-        cout << "2- close program";
-        cout << endl << endl;
-
-        cout << "You choose: " << endl;
-        cin >> nextAction;
-
-        switch(nextAction){
-            case 1: backToMenu();
-            break;
-
-            case 2: end();
-            break;
-
-            default: 
-                cout << "Error occur during choosing the action" << endl;
-                sleep(100);
-                cout << "Automatic return to menu in progress" << endl;
-                sleep(1000);
-                cout << "wait..." << endl;
-                sleep(1000);
-                backToMenu();
-        }
-    }
-
     void menu() {
         int choice; 
 
         clearConsole();
 
         cout << "Simple calculator in C++" << endl;
+        
         line();
 
         cout << "What do you want today - select by typing a number below";
