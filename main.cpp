@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
 class calculator {
@@ -13,62 +13,28 @@ public:
 
     void clearConsole() {
         for (int i = 0; i < 100; i++) {
-        std::cout << std::endl;
+        cout << endl;
         }
     }
-    void line(){
+
+    void sleep(int milliseconds) {
+        this_thread::sleep_for(chrono::milliseconds(milliseconds));
+    }
+
+    void line() {
         cout << "------------------------------" << endl;
     }
 
-    int backToMenu() {
-
+    void backToMenu() {
         clearConsole();
         menu();
     }
 
     void end() {
-        return 0;
+        exit(0); 
     }
 
-    int addition(){
-
-        clearConsole();
-
-        cout << "Enter first number: ";
-        cin >> firstNumber;
-    
-        cout << "Enter second number: ";
-        cin >>  secondNumber;
-
-        result = firstNumber + secondNumber;
-        cout << "Result of the equation: " << firstNumber << " + " << secondNumber << "equals: " << result;
-        cout << endl;
-
-        line();
-        nextAction();
-
-    }
-
-    int subtraction() {
-
-        clearConsole();
-
-        cout << "Enter first number: ";
-        cin >> firstNumber;
-    
-        cout << "Enter second number: ";
-        cin >>  secondNumber;
-
-        result = firstNumber - secondNumber;
-        cout << "Result of the equation: " << irstNumber << " - "<< secondNumber << "equals: " << result;
-        cout << endl;
-
-        line();
-        nextAction();
-    }
-
-    void nextAction(){
-        
+    void nextAction() {
         int nextAction;
 
         clearConsole();
@@ -88,33 +54,67 @@ public:
             case 2: end();
             break;
 
-            default: cout << "Error occur during choosing the action" << endl;
-
-                Sleep(10);
-                cout << "Automatic return to menu in progress";
-                Sleep(10);
-                cout << "wait..."
+            default: 
+                cout << "Error occur during choosing the action" << endl;
+                sleep(100);
+                cout << "Automatic return to menu in progress ";
+                sleep(1000);
+                cout << "wait..." << endl;
+                sleep(1000);
                 backToMenu();
-
         }
+    }
 
+    void addition(){
+        clearConsole();
+
+        cout << "Enter first number: ";
+        cin >> firstNumber;
+    
+        cout << "Enter second number: ";
+        cin >>  secondNumber;
+
+        result = firstNumber + secondNumber;
+        cout << "Result of the equation: " << firstNumber << " + " << secondNumber << " equals: " << result;
+        cout << endl;
+
+        line();
+        nextAction();
+    }
+
+    void subtraction() {
+
+        clearConsole();
+
+        cout << "Enter first number: ";
+        cin >> firstNumber;
+    
+        cout << "Enter second number: ";
+        cin >>  secondNumber;
+
+        result = firstNumber - secondNumber;
+        cout << "Result of the equation: " << firstNumber << " - " << secondNumber << " equals: " << result;
+        cout << endl;
+
+        line();
+        nextAction();
     }
 
     void menu() {
-
         int choice; 
 
         clearConsole();
 
         cout << "Simple calculator in C++" << endl;
+
         line();
 
         cout << "What do you want today - select by typing a number below";
         cout << endl << endl;
 
         cout<<"1- adding two numbers" << endl;
-        cout<<"2- subtraction two numbers";
-        cout<<"3- close program"
+        cout<<"2- subtraction two numbers" << endl;
+        cout<<"3- close program" << endl;
         cout << endl << endl;
         
         cout << "You choose: " << endl;
@@ -130,22 +130,21 @@ public:
             case 3: end();
             break;
 
-            default: cout << "Error occur during choosing the action" << endl;
-
-                Sleep(10);
-                cout << "Automatic return to menu in progress";
-                Sleep(10);
-                cout << "wait..."
+            default: 
+                cout << "Error occur during choosing the action" << endl;
+                sleep(100);
+                cout << "Automatic return to menu in progress" << endl;
+                sleep(1000);
+                cout << "wait..." << endl;
+                sleep(1000);
                 backToMenu();
         }
-}
-
+    }
 };
 
+int main(int argc, char const *argv[]) {
 
-
-int main(int argc, char const *argv[])  {
-    
-    calculator.menu();
+    calculator calc; // class calculator, object calc
+    calc.menu(); // object calc, method menu
     
 }
