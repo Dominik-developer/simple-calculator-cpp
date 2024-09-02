@@ -13,13 +13,13 @@ public:
 
     void clearConsole() {
         for (int i = 0; i < 100; i++) {
-        std::cout << std::endl;
+        cout << endl;
         }
     }
 
     void sleep(int milliseconds) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-    }   
+        this_thread::sleep_for(chrono::milliseconds(milliseconds));
+    }
 
     void line() {
         cout << "------------------------------" << endl;
@@ -106,7 +106,7 @@ public:
         clearConsole();
 
         cout << "Simple calculator in C++" << endl;
-        
+
         line();
 
         cout << "What do you want today - select by typing a number below";
